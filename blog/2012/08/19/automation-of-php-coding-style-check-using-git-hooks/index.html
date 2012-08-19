@@ -1,24 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[A2 Design Technical Blog]]></title>
-  <link href="http://blog.a2design.biz/atom.xml" rel="self"/>
-  <link href="http://blog.a2design.biz/"/>
-  <updated>2012-08-20T00:41:38+07:00</updated>
-  <id>http://blog.a2design.biz/</id>
-  <author>
-    <name><![CDATA[A2Design]]></name>
-    <email><![CDATA[info@a2design.biz]]></email>
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Automation of PHP Coding Style Check Using Git Hooks - A2 Design Technical Blog</title>
+  <meta name="author" content="A2Design">
 
   
-  <entry>
-    <title type="html"><![CDATA[Automation of PHP Coding Style Check Using Git Hooks]]></title>
-    <link href="http://blog.a2design.biz/blog/2012/08/19/automation-of-php-coding-style-check-using-git-hooks/"/>
-    <updated>2012-08-19T23:17:00+07:00</updated>
-    <id>http://blog.a2design.biz/blog/2012/08/19/automation-of-php-coding-style-check-using-git-hooks</id>
-    <content type="html"><![CDATA[<p>Following coding conventions is a good idea. It increases maintainability of the project, as developers don’t need to spend much efforts working with code written by other developer. However, manual coding style check can be a tedious task, especially when there are new member in a team. Fortunately there are some tools to automate this process. <strong>PHP_CodeSniffer</strong> used along with <strong>Git Hooks</strong> will enforce coding style without extra time spent.</p>
+  <meta name="description" content="Following coding conventions is a good idea. It increases maintainability of the project, as developers don’t need to spend much efforts working with &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.a2design.biz/blog/2012/08/19/automation-of-php-coding-style-check-using-git-hooks">
+  <link href="/favicon.ico" rel="icon">
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="A2 Design Technical Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header role="banner"><hgroup>
+    <a href="/">
+        <div id="site_logo"></div>
+    </a>
+</hgroup>
+
+</header>
+  <nav role="navigation">
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Automation of PHP Coding Style Check Using Git Hooks</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-19T23:17:00+07:00" pubdate data-updated="true">Aug 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Following coding conventions is a good idea. It increases maintainability of the project, as developers don’t need to spend much efforts working with code written by other developer. However, manual coding style check can be a tedious task, especially when there are new member in a team. Fortunately there are some tools to automate this process. <strong>PHP_CodeSniffer</strong> used along with <strong>Git Hooks</strong> will enforce coding style without extra time spent.</p>
 
 <!-- more -->
 
@@ -211,7 +273,88 @@ List of available coding styles</p>
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>git commit --no-verify</span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-</feed>
+
+<span class="byline author vcard">Posted by <span class="fn"><a href="/about" title="About the author (Stas)" rel="author">Stas</a></span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-19T23:17:00+07:00" pubdate data-updated="true">Aug 19<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/development/'>Development</a>, <a class='category' href='/blog/categories/git/'>Git</a>, <a class='category' href='/blog/categories/php/'>PHP</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.a2design.biz/blog/2012/08/19/automation-of-php-coding-style-check-using-git-hooks/" data-via="a2design_biz" data-counturl="http://blog.a2design.biz/blog/2012/08/19/automation-of-php-coding-style-check-using-git-hooks/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - A2Design -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

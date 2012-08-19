@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Git | A2 Design Technical Blog]]></title>
+  <link href="http://blog.a2design.biz/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://blog.a2design.biz/"/>
+  <updated>2012-08-20T00:41:38+07:00</updated>
+  <id>http://blog.a2design.biz/</id>
+  <author>
+    <name><![CDATA[A2Design]]></name>
+    <email><![CDATA[info@a2design.biz]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Automation of PHP Coding Style Check Using Git Hooks]]></title>
+    <link href="http://blog.a2design.biz/blog/2012/08/19/automation-of-php-coding-style-check-using-git-hooks/"/>
+    <updated>2012-08-19T23:17:00+07:00</updated>
+    <id>http://blog.a2design.biz/blog/2012/08/19/automation-of-php-coding-style-check-using-git-hooks</id>
+    <content type="html"><![CDATA[<p>Following coding conventions is a good idea. It increases maintainability of the project, as developers don’t need to spend much efforts working with code written by other developer. However, manual coding style check can be a tedious task, especially when there are new member in a team. Fortunately there are some tools to automate this process. <strong>PHP_CodeSniffer</strong> used along with <strong>Git Hooks</strong> will enforce coding style without extra time spent.</p>
+
+<!-- more -->
+
+
+<h2>PHP Code Sniffer</h2>
+
+<p><strong>PHP Code Sniffer</strong> is a tool of choice in PHP community to enforce coding styles. It supports multiple coding standards and languages: <em>PHP</em>, <em>JavaScript</em> and <em>CSS</em>.</p>
+
+<h3>PHP Code Sniffer Installation</h3>
+
+<p>The easiest way to install <strong>PHP_CodeSniffer</strong> is to use the <strong>PEAR installer</strong>. To install <strong>PHP_CodeSniffer</strong> this way, first ensure you have installed PEAR and then run the following command:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>pear install PHP_CodeSniffer</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Alternative way to install <strong>PHP_CodeSniffer</strong> is to clone repository from GitHub:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/squizlabs/PHP_CodeSniffer.git
+</span><span class='line'>cd PHP_CodeSniffer
+</span><span class='line'>php scripts/phpcs -h</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>PHP Code Sniffer Usage</h3>
+
+<p>After installation phpcs command will be available to use. Some examples of usage:
+List of available coding styles
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>phpcs -i</span></code></pre></td></tr></table></div></figure></notextile></div>
+Check of single file
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>phpcs --standard=Cake /path/to/code/myfile.php</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Will check <code>/path/to/code/myfile.php</code> file (directories can also be checked) using <strong>CakePHP</strong> style standard. Other standards are available on GitHub</p>
+
+<h2>Running PHP Code Sniffer on Git commit</h2>
+
+<p>It is dull to run <strong>PHP_CodeSniffer</strong> manually. More convenient to run checks automatically on committing files to Git using git-hooks.</p>
+
+<h3>Configuration</h3>
+
+<ul>
+<li>Install git-hooks
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/AD7six/git-hooks.git</span></code></pre></td></tr></table></div></figure></notextile></div></li>
+<li>Build project
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>make install</span></code></pre></td></tr></table></div></figure></notextile></div>
+if you use Mac OS X or other FreeBSD based OS, then before running makefile change line 47 in Makefile to:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sed -i '' -e s@%sourcedir%@$(CURDIR)@ $(prefix)/bin/git-hooks</span></code></pre></td></tr></table></div></figure></notextile></div></li>
+<li>Install Git Hooks.</li>
+</ul>
+
+
+<p>Navigate to root directory of PHP project and run:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git hooks install</span></code></pre></td></tr></table></div></figure></notextile></div>
+- Configure Git Hooks.</p>
+
+<p>After hooks installation <code>.git/hooks</code> folder will have a symlinks to a single generic hook and config.php file with settings.
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>$config = array(
+</span><span class='line'>  'master' =&gt; array(),
+</span><span class='line'>  'develop' =&gt; array(),
+</span><span class='line'>  'feature/*' =&gt; array(),
+</span><span class='line'>  'release/*' =&gt; array(),
+</span><span class='line'>  'hotfix/*' =&gt; array(),
+</span><span class='line'>  'support/*' =&gt; array(),
+</span><span class='line'>  '*' =&gt; array(
+</span><span class='line'>      'pre-commit' =&gt; array(
+</span><span class='line'>          'php/lint.php' =&gt; true,
+</span><span class='line'>          'js/lint.php' =&gt; true,
+</span><span class='line'>          'php/phpcs.php',
+</span><span class='line'>          'php/phpunit.php',
+</span><span class='line'>          'images/optimize.php',
+</span><span class='line'>      ),
+</span><span class='line'>      'prepare-commit-msg' =&gt; array(
+</span><span class='line'>          //'flow/commitMessageWarn.php'
+</span><span class='line'>      ),
+</span><span class='line'>      'post-commit' =&gt; array(
+</span><span class='line'>          'misc/playSuccess',
+</span><span class='line'>      ),
+</span><span class='line'>      'post-merge' =&gt; array(
+</span><span class='line'>          'php/lint.php',
+</span><span class='line'>          'js/lint.php'
+</span><span class='line'>      ),
+</span><span class='line'>      'php' =&gt; array(
+</span><span class='line'>          'lint' =&gt; array(
+</span><span class='line'>              'pattern' =&gt; '/\.php$/'
+</span><span class='line'>          ),
+</span><span class='line'>          'phpcs' =&gt; array(
+</span><span class='line'>              '-n' =&gt; true,
+</span><span class='line'>              '-s' =&gt; true,
+</span><span class='line'>              '--extensions' =&gt; 'php,ctp',
+</span><span class='line'>              '--encoding' =&gt; 'UTF-8',
+</span><span class='line'>              '--standard' =&gt; 'Cake',
+</span><span class='line'>              '--report-width' =&gt; trim(`tput cols`)
+</span><span class='line'>          )
+</span><span class='line'>      ),
+</span><span class='line'>      'js' =&gt; array(
+</span><span class='line'>          'lint' =&gt; array(
+</span><span class='line'>              'pattern' =&gt; '/\.js$/'
+</span><span class='line'>          )
+</span><span class='line'>      )
+</span><span class='line'>  )
+</span><span class='line'>);
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+You should not have any difficulties here. Just removes settings you do not need and provide branch specific setting if you need.</p>
+
+<h3>Tips</h3>
+
+<p>To bypass hook on commit add <code>--no-verify</code> option, so commit command will look like:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git commit --no-verify</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>
